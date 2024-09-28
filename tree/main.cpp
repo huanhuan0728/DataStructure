@@ -62,6 +62,49 @@ int getFather(TreeNode t[], int length, int index)
     }
     return father;
 }
+void visitNode(TreeNode node)
+{
+    std::cout << node.data << " ";
+}
+
+
+//从下标为index的结点开始先序遍历
+void PreOderSqTree(TreeNode *t, int length, int index)
+{
+    if (isEmpty(t, length, index)) {
+        return;
+    }
+    visitNode(t[index]);    // 访问节点
+    PreOderSqTree(t, length, getLchild(t, length, index));  //  先访问左子树
+    PreOderSqTree(t, length, getRchild(t, length, index));  //  访问右子树
+    
+}
+//  从下标为index的节点开始中序遍历
+void InOrderSqTree(TreeNode *t, int length, int index)
+{
+    if (isEmpty(t, length, index)) {
+        return;
+    }
+    InOrderSqTree(t, length, getLchild(t, length, index));  //  中序遍历左子树
+    visitNode(t[index]);    //访问节点
+    InOrderSqTree(t, length, getRchild(t, length, index));  //  中序遍历右子树
+}
+
+//  从下标为index的节点开始后序遍历
+void PostOrderSqtree(TreeNode *t, int length, int index)
+{
+    if (isEmpty(t, length, index)) {
+        return;
+    }
+    PostOrderSqtree(t, length, getLchild(t, length, index));    //  先遍历左子树
+    PostOrderSqtree(t, length, getRchild(t, length, index));    //  遍历右子树
+    visitNode(t[index]);
+}
+
+
+
+
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
