@@ -1,7 +1,8 @@
 #include "sortingAlgorithms.h"
 
 // 直接插入排序的实现
-void insertionSort(int arr[], int n)
+
+void insertion_sort(int arr[], int n)
 {
     for (int i = 1; i < n; i++)
     {
