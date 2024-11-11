@@ -1,0 +1,12 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     '/Users/xuhuanlu/Desktop/DataStructure/graph/bfs_graph'
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: _initQueue, symObjAddr: 0x0, symBinAddr: 0x100000A70, symSize: 0x30 }
+  - { offset: 0x41, size: 0x8, addend: 0x0, symName: _initQueue, symObjAddr: 0x0, symBinAddr: 0x100000A70, symSize: 0x30 }
+  - { offset: 0x65, size: 0x8, addend: 0x0, symName: _isEmpty, symObjAddr: 0x30, symBinAddr: 0x100000AA0, symSize: 0x20 }
+  - { offset: 0x8D, size: 0x8, addend: 0x0, symName: _enqueue, symObjAddr: 0x50, symBinAddr: 0x100000AC0, symSize: 0x80 }
+  - { offset: 0xBF, size: 0x8, addend: 0x0, symName: _dequeue, symObjAddr: 0xD0, symBinAddr: 0x100000B40, symSize: 0xB0 }
+  - { offset: 0xF5, size: 0x8, addend: 0x0, symName: _bfs, symObjAddr: 0x180, symBinAddr: 0x100000BF0, symSize: 0x1A0 }
+  - { offset: 0x190, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x320, symBinAddr: 0x100000D90, symSize: 0x155 }
+...
