@@ -19,3 +19,25 @@ void insertion_sort(int arr[], int n)
         arr[j + 1] = key;
     }
 }
+
+void shell_sort(int arr[], int n)
+{
+    //  初始化间隔gap
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+        //  使用间隔gap进行插入排序
+        for (int i = gap; i < n; i++)
+        {
+            int temp = arr[i];
+            int j;
+
+            //  对间隔为gap的元素进行插入排序
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+            {
+                arr[j] = arr[j - gap];
+            }
+
+            arr[j] = temp;
+        }
+    }
+}

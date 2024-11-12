@@ -13,7 +13,8 @@ int main()
     }
     printf("\n");
 
-    insertion_sort(arr, n);
+    // insertion_sort(arr, n);
+    shell_sort(arr, n);
 
     printf("排序后的数组：");
     for (int i = 0; i < n; i++)
