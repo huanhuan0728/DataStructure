@@ -83,3 +83,41 @@ void shell_sort_2(int arr[], int n)
         }
     }
 }
+
+void quick_sort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        //  分区操作，返回基准元素的索引
+        int pivot_index = partition(arr, low, high);
+
+        // 递归的对基准元素的左右的子数组进行快速排序
+        quick_sort(arr, low, pivot_index - 1);
+        quick_sort(arr, pivot_index + 1, high);
+    }
+}
+
+int partition(int arr[], int low, int high)
+{
+    int pivot = arr[high]; // 选择最右边的元素为基准
+    int i = low - 1;       // i是较小元素的索引
+
+    for (int j = low, j < high; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            // 交换arr[i]和arr[j]
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    // 把基准元素放到正确的位置
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
