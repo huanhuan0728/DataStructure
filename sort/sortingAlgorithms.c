@@ -20,6 +20,25 @@ void insertion_sort(int arr[], int n)
     }
 }
 
+//   11月13日重复练习
+void inserttion_sort_2(int arr[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        // 将大于key的元素向右移动
+        while (j >= 0 && arr[j] > key)
+        {
+            /* code */
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
 void shell_sort(int arr[], int n)
 {
     //  初始化间隔gap
@@ -37,6 +56,29 @@ void shell_sort(int arr[], int n)
                 arr[j] = arr[j - gap];
             }
 
+            arr[j] = temp;
+        }
+    }
+}
+
+// 11月3第二次练习
+void shell_sort_2(int arr[], int n)
+{
+    //  初始化gap
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+
+        // 对间隔gap的子序列进行插入排序
+        for (int i = gap; i < n; i++)
+        {
+            int temp = arr[i];
+            int j;
+
+            // 对间隔为gap的元素进行插入排序
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+            {
+                arr[j] = arr[j - gap];
+            }
             arr[j] = temp;
         }
     }
