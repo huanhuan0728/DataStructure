@@ -7,4 +7,6 @@ void insertion_sort(int arr[], int n);
 void shell_sort(int arr[], int n);
 
 void quick_sort(int arr[], int low, int high);
+
+void head_sort(int arr[], int n);
 #endif

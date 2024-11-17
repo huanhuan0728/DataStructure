@@ -189,3 +189,54 @@ int parttion_2(int arr[], int low, int high)
 
     return i + 1;
 }
+
+void heapify(int arr[], int n, int index)
+{
+    int largest = index; // 假设当前节点是最大值
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+
+    // 检查左节点是否比根节点大
+    if (left < n && arr[left] > arr[largest])
+    {
+        largest = left;
+    }
+
+    // 检查右节点是否比根节点大
+    if (right < n && arr[right] > arr[largest])
+    {
+        largest = right;
+    }
+
+    // 如果最大值不是根节点，交换位置并递归调整子树
+    if (largest != index)
+    {
+        int temp = arr[index];
+        arr[index] = arr[largest];
+        arr[largest] = temp;
+
+        // 递归调整子树
+        heapify(arr, n, largest);
+    }
+}
+
+void head_sort(int arr[], int n)
+{
+    // 构建最大堆（从最后一个非叶子节点开始）
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        heapify(arr, n, i);
+    }
+
+    // 逐步将堆顶元素移到数组末尾，并重新调整堆
+    for (int i = n - 1; i > 0; i--)
+    {
+        //  将堆顶（最大值）与当前末尾元素交换
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+
+        // 重新调整堆，范围是[0, i-1]
+        heapify(arr, i, 0);
+    }
+}
