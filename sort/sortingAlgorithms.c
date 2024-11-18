@@ -39,6 +39,23 @@ void inserttion_sort_2(int arr[], int n)
     }
 }
 
+void insettion_sort1118(int arr[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        int j = i - 1;
+
+        // 将大于key的元素后移
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
 // 11月15
 void inserttion_sort_3(int arr[].int n)
 {
@@ -190,6 +207,7 @@ int parttion_2(int arr[], int low, int high)
     return i + 1;
 }
 
+// 堆调整，使得index为根节点的子树成为最大堆
 void heapify(int arr[], int n, int index)
 {
     int largest = index; // 假设当前节点是最大值
@@ -238,5 +256,57 @@ void head_sort(int arr[], int n)
 
         // 重新调整堆，范围是[0, i-1]
         heapify(arr, i, 0);
+    }
+}
+
+// 11月18日堆排序练习
+void headpify1118(int arr[], int n, int index)
+{
+    int largest = index; // 假设当前节点是最大值
+    int left = 2 * index + 1;
+    int right = 2 * index + 2;
+
+    // 检查左子节点是否比根节点大
+    if (left < n && arr[left] > arr[largest])
+    {
+        /* code */
+        largest = left;
+    }
+
+    // 检查右子节点是否比当前节点大
+    if (right < n && arr[right] > arr[largest])
+    {
+        /* code */
+        largest = right;
+    }
+
+    if (largest != index)
+    {
+        /* code */
+        int temp = arr[index];
+        arr[index] = arr[largest];
+        arr[largest] = temp;
+
+        headpify(arr, n, largest);
+    }
+}
+
+void heap_sort1118(int arr[], int n)
+{
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        headpify1118(arr, n, i);
+    }
+
+    // 逐步将堆顶元素移到数组末尾，并重新调整堆
+    for (int i = n - 1; i > 0; i--)
+    {
+        // 将堆顶元素（最大值）和当前末尾元素交换
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+
+        // 重新调整堆
+        headpify1118(arr, i, 0);
     }
 }
