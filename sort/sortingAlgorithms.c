@@ -127,7 +127,6 @@ void shell_sort_3(int arr[], int n)
     //  初始化gap
     for (int gap = n / 2; gap > 0; gap /= 2)
     {
-        // 对间隔为gap的子序列进行插入排序
         for (int i = gap; i < n; i++)
         {
             int temp = arr[i];
@@ -138,6 +137,27 @@ void shell_sort_3(int arr[], int n)
             {
                 arr[j] = arr[j - gap];
             }
+            arr[j] = temp;
+        }
+    }
+}
+
+void shell_sort_4(int arr[], int n)
+{
+    // 初始化gap
+    for (int gap = n / 2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < n; i++)
+        {
+            int temp = arr[i];
+            int j;
+
+            // 对间隔为gap的子序列进行插入排序 4 5 6 7 8 9 5 2 3
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+            {
+                arr[j] = arr[j - gap];
+            }
+
             arr[j] = temp;
         }
     }
@@ -200,6 +220,28 @@ int parttion_2(int arr[], int low, int high)
     }
 
     //  把基准元素放到正确的位置
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
+
+int partition_3(int arr[], int low, int high)
+{
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; i++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
     int temp = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;
