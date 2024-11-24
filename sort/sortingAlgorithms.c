@@ -57,7 +57,7 @@ void insettion_sort1118(int arr[], int n)
 }
 
 // 11月15
-void inserttion_sort_3(int arr[].int n)
+void inserttion_sort_3(int arr[], int n)
 {
     for (int i = 1; i < n; i++)
     {
@@ -200,14 +200,14 @@ int partition(int arr[], int low, int high)
 
     return i + 1;
 }
-
+/*
 // 11月15练习
-int parttion_2(int arr[], int low, int high)
+int partition_2(int arr[], int low, int high)
 {
     int pivot = arr[high];
     int i = low - 1;
 
-    for (int j = low, j < high; i++)
+    for (int j = low; j < high; i++)
     {
         if (arr[j] < pivot)
         {
@@ -242,6 +242,33 @@ int partition_3(int arr[], int low, int high)
         }
     }
 
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
+
+*/
+
+int partion_4(int arr[], int low, int high)
+{
+    int pivot = arr[high]; // 选择最右边的元素为基准
+    int i = low - 1;       // i是较小元素的指引
+
+    for (int j = low; j < high; j++)
+    {
+        if (arr[j] < pivot)
+        {
+            i++;
+            // 交换arr[i]和arr[j]
+            int temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    // 把基准元素放到正确的位置
     int temp = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;
@@ -350,5 +377,67 @@ void heap_sort1118(int arr[], int n)
 
         // 重新调整堆
         headpify1118(arr, i, 0);
+    }
+}
+
+void merge(int arr[], int left, int mid, int right)
+{
+    int n1 = mid - left + 1; // 左数组大小
+    int n2 = right - mid;    // 右数组大小
+
+    // 创建临时数组
+    int L[n1], R[n2];
+
+    // 拷贝数据到临时数组
+    for (int i = 0; i < n1; i++)
+    {
+        L[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; j++)
+    {
+        R[j] = arr[mid + 1 + j];
+    }
+
+    // 合并临时数组到arr
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i++];
+        }
+        else
+        {
+            arr[k] = R[j++];
+        }
+
+        k++;
+    }
+
+    // 拷贝剩余数组
+    while (i < n1)
+    {
+        arr[k++] = L[i++];
+    }
+
+    while (j < n2)
+    {
+        arr[k++] = R[j++];
+    }
+}
+
+void merge_sort(int arr[], int left, int right)
+{
+    if (left < right)
+    {
+        // 找到中点
+        int mid = left + (right - left) / 2;
+
+        // 递归对左右两部分进行排序
+        merge_sort(arr, left, mid);
+        merge_sort(arr, mid + 1, right);
+
+        // 合并已排序部分
+        merge(arr, left, mid, right);
     }
 }
