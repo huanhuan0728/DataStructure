@@ -62,8 +62,8 @@ void inserttion_sort_3(int arr[], int n)
     for (int i = 1; i < n; i++)
     {
         int key = arr[i];
-        int j = i - 1;
-        for (j; j >= 0; j++)
+
+        for (int j = i - 1; j >= 0; j++)
         {
             // 把大于key的元素右移
             while (arr[j] >= key && j >= 0)
@@ -163,25 +163,12 @@ void shell_sort_4(int arr[], int n)
     }
 }
 
-void quick_sort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        //  分区操作，返回基准元素的索引
-        int pivot_index = partition(arr, low, high);
-
-        // 递归的对基准元素的左右的子数组进行快速排序
-        quick_sort(arr, low, pivot_index - 1);
-        quick_sort(arr, pivot_index + 1, high);
-    }
-}
-
 int partition(int arr[], int low, int high)
 {
     int pivot = arr[high]; // 选择最右边的元素为基准
     int i = low - 1;       // i是较小元素的索引
 
-    for (int j = low, j < high; j++)
+    for (int j = low; j < high; j++)
     {
         if (arr[j] < pivot)
         {
@@ -200,6 +187,20 @@ int partition(int arr[], int low, int high)
 
     return i + 1;
 }
+
+void quick_sort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        //  分区操作，返回基准元素的索引
+        int pivot_index = partition(arr, low, high);
+
+        // 递归的对基准元素的左右的子数组进行快速排序
+        quick_sort(arr, low, pivot_index - 1);
+        quick_sort(arr, pivot_index + 1, high);
+    }
+}
+
 /*
 // 11月15练习
 int partition_2(int arr[], int low, int high)
@@ -249,7 +250,7 @@ int partition_3(int arr[], int low, int high)
     return i + 1;
 }
 
-*/
+
 
 int partion_4(int arr[], int low, int high)
 {
@@ -265,6 +266,32 @@ int partion_4(int arr[], int low, int high)
             int temp = arr[j];
             arr[j] = arr[i];
             arr[i] = temp;
+        }
+    }
+
+    // 把基准元素放到正确的位置
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+
+    return i + 1;
+}
+*/
+
+int partion_5(int arr[], int low, int high)
+{
+    int privot = arr[high]; // 选择最右边元素为基准
+    int i = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (arr[j] < privot)
+        {
+            i++;
+            // 交换arr[i]和arr[j]
+            int temp = arr[i + 1];
+            arr[i + 1] = arr[high];
+            arr[high] = temp;
         }
     }
 
@@ -328,6 +355,8 @@ void head_sort(int arr[], int n)
     }
 }
 
+/*
+
 // 11月18日堆排序练习
 void headpify1118(int arr[], int n, int index)
 {
@@ -338,20 +367,20 @@ void headpify1118(int arr[], int n, int index)
     // 检查左子节点是否比根节点大
     if (left < n && arr[left] > arr[largest])
     {
-        /* code */
+
         largest = left;
     }
 
     // 检查右子节点是否比当前节点大
     if (right < n && arr[right] > arr[largest])
     {
-        /* code */
+
         largest = right;
     }
 
     if (largest != index)
     {
-        /* code */
+
         int temp = arr[index];
         arr[index] = arr[largest];
         arr[largest] = temp;
@@ -379,6 +408,8 @@ void heap_sort1118(int arr[], int n)
         headpify1118(arr, i, 0);
     }
 }
+
+*/
 
 void merge(int arr[], int left, int mid, int right)
 {
