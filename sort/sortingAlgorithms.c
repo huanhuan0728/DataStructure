@@ -76,6 +76,25 @@ void inserttion_sort_3(int arr[], int n)
         }
     }
 }
+
+void insetion_sort_0113(int arr[], int n)
+{
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+
+        for (int j = i - 1; j >= 0; j--)
+        {
+            while (arr[j] >= key && j >= 0)
+            {
+                arr[j + 1] = arr[j];
+                j -= 1;
+            }
+            a[j + 1] = key;
+        }
+    }
+}
+
 void shell_sort(int arr[], int n)
 {
     //  初始化间隔gap
